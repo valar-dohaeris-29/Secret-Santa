@@ -145,6 +145,7 @@ const nameMap: { [key: string]: string } = {
 };
 
 watch(password, (newText) => {
+  newText = newText.toLocaleLowerCase();
   if (nameMap[newText]) {
     person.value = nameMap[newText];
     startConfetti();
