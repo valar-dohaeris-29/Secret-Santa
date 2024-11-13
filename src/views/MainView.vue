@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, watch } from "vue";
 
 let W = window.innerWidth;
 let H = window.innerHeight;
@@ -124,30 +124,24 @@ function onResize() {
     canvas.height = H;
   }
 }
+const props = defineProps({
+  nameMap: {
+    required: true,
+    type: Object as () => Record<string, string>,
+  },
+  title: {
+    required: true,
+    type: String,
+  },
+});
 
 const person = ref("");
 const password = ref("");
-const nameMap: { [key: string]: string } = {
-  sleigh: "Len",
-  reindeer: "Cathy",
-  snowflake: "Catheline",
-  gingerbread: "Malcolm",
-  mistletoe: "Ailsa",
-  jinglebell: "Annie",
-  stocking: "Jasiel",
-  peppermint: "Demi",
-  holly: "Jansen",
-  icicle: "Lucia",
-  tinsel: "Deuel",
-  carol: "Maxine",
-  wreath: "Aidan",
-  garland: "Joash",
-};
 
 watch(password, (newText) => {
   newText = newText.toLocaleLowerCase();
-  if (nameMap[newText]) {
-    person.value = nameMap[newText];
+  if (props.nameMap[newText]) {
+    person.value = props.nameMap[newText];
     startConfetti();
   } else {
     endConfetti();
@@ -157,39 +151,44 @@ watch(password, (newText) => {
 </script>
 
 <template>
-  <main class="container">
-    <div class="top-spacing"></div>
-    <v-row class="pl-4 pt-8 pb-8">
-      <v-col cols="12">
-        <h1>🎁Hi Mr/Ms Ellan!🤫</h1>
-        <h1>🎄Secret Santa 2024 🎅</h1>
-      </v-col>
-    </v-row>
-    <v-row></v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-text-field
-          class="password pl-4"
-          v-model="password"
-          variant="solo"
-          label="Password"
-        ></v-text-field>
-      </v-col>
-    </v-row>
-    <!-- <v-row>
-      <v-col cols="12" class="pl-8">
-        <v-btn @click="btnShowPerson" color="#cc272c">SUBMIT</v-btn>
-      </v-col>
-    </v-row> -->
-    <v-row>
-      <v-col cols="12" class="gifted-person">
-        <div>
-          <h2>{{ person }}</h2>
-          <canvas id="canvas"></canvas>
-        </div>
-      </v-col>
-    </v-row>
-  </main>
+  <div class="background">
+    <div class="content">
+      <div class="top-spacing"></div>
+      <v-row class="pl-6 pr-6">
+        <v-col cols="12">
+          <h2>🎁{{ props.title }}🤫</h2>
+          <h3>🎄I'm Santa🎅</h3>
+          <h3>And I need YOUR help!</h3>
+        </v-col>
+      </v-row>
+      <v-row class="pl-6 pr-6">
+        <v-col cols="12">
+          <p>
+            I have someone special that needs a gift from YOU! Please enter your
+            Christmas code below
+          </p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            class="password pl-4"
+            v-model="password"
+            variant="solo"
+            label="Christmas code"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" class="gifted-person">
+          <div>
+            <h1>{{ person }}</h1>
+            <canvas id="canvas"></canvas>
+          </div>
+        </v-col>
+      </v-row>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -198,32 +197,43 @@ watch(password, (newText) => {
 }
 
 h1 {
-  color: white;
-  font-size: 23pt;
-  font-weight: bold;
-}
-
-.container {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../assets/img/christmas-background.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.password {
-  width: 200px;
-}
-
-h2 {
   position: absolute;
-  margin-top: 15vh;
+  margin-top: 5vh;
   width: 100%;
   text-align: center;
   font-size: 333%;
   font-family: sans-serif;
   color: white;
+}
+
+h2 {
+  color: white;
+  font-size: 23pt;
+  font-weight: bold;
+}
+
+h3 {
+  color: white;
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+p {
+  color: white;
+  font-size: 14pt;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/img/christmas-background.jpg");
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+.password {
+  width: 200px;
 }
 
 canvas {
