@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory  } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Ellans from "../views/santa-circles/Ellans.vue";
 import Cathy from "@/views/santa-circles/Cathy.vue";
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory("/Secret-Santa/"),
   routes: [
     {
       path: "/",
