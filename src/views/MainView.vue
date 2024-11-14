@@ -3,7 +3,7 @@ import { ref, watch } from "vue";
 
 let W = window.innerWidth;
 let H = window.innerHeight;
-const maxConfettis = 150;
+const maxConfettis = 75;
 const particles: ConfettiParticle[] = [];
 let animationFrameId: number | null = null;
 
