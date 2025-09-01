@@ -180,9 +180,9 @@ watch(password, (newText) => {
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" class="gifted-person">
+        <v-col cols="12">
           <div>
-            <h1>{{ person }}</h1>
+            <h1 class="gifted-person">{{ person }}</h1>
             <canvas id="canvas"></canvas>
           </div>
         </v-col>
@@ -192,6 +192,25 @@ watch(password, (newText) => {
 </template>
 
 <style scoped>
+/* Only apply on desktop/laptop screens */
+@media (min-width: 700px) {
+  .content {
+    padding-left: 33rem;
+  }
+  .top-spacing {
+    height: 14rem;
+  }
+
+  canvas {
+    width: 45rem;
+  }
+
+  h1.gifted-person {
+    margin-top: 12vh;
+    width: 45rem;
+  }
+}
+
 .top-spacing {
   height: 200px;
 }
@@ -234,12 +253,5 @@ p {
 
 .password {
   width: 200px;
-}
-
-canvas {
-  overflow-y: hidden;
-  overflow-x: hidden;
-  width: 100%;
-  margin: 0;
 }
 </style>

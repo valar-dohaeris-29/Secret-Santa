@@ -4,7 +4,7 @@ import MainView from "../MainView.vue";
 const nameMap: { [key: string]: string } = {
   sleigh: "Len",
   reindeer: "Cathy",
-  snowflake: "Catheline",
+  snowflake: "Cathelene",
   gingerbread: "Malcolm",
   mistletoe: "Ailsa",
   jinglebell: "Annie",
