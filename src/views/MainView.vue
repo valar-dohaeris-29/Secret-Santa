@@ -141,7 +141,7 @@ const password = ref("");
 watch(password, (newText) => {
   newText = newText.toLocaleLowerCase();
   if (props.nameMap[newText]) {
-    person.value = props.nameMap[newText];
+    person.value = props.nameMap[newText].replaceAll("_", " ");
     startConfetti();
   } else {
     endConfetti();

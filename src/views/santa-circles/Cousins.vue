@@ -2,21 +2,21 @@
 import MainView from "../MainView.vue";
 
 const passwordNameMap: { [key: string]: string } = {
-  lasertag: "Aidan",
-  brookies: "Maxine",
-  exams: "Cathlene",
-  justdance: "Deuel",
-  jiujitsu: "Annie",
-  boba: "Jasiel",
+  lasertag: "Jasiel_Honnor_200_lite",
+  brookies: "Annie_Oppo_A60",
+  exams: "Aidan_S21_Ultra",
+  justdance: "Maxine_iPhone_13",
+  jiujitsu: "Cathlene_Huawei_Y60",
+  boba: "Deuel_Oppo_A60",
 };
 
 const nameExclusionMap: { [key: string]: string[] } = {
-  Deuel: ["Deuel"],
-  Cathlene: ["Cathlene", "Deuel"],
-  Annie: ["Annie"],
-  Jasiel: ["Jasiel"],
-  Maxine: ["Maxine"],
-  Aidan: ["Aidan"],
+  Deuel_Oppo_A60: ["Deuel_Oppo_A60"],
+  Cathlene_Huawei_Y60: ["Cathlene_Huawei_Y60", "Deuel_Oppo_A60"],
+  Annie_Oppo_A60: ["Annie_Oppo_A60"],
+  Jasiel_Honnor_200_lite: ["Jasiel_Honnor_200_lite"],
+  Maxine_iPhone_13: ["Maxine_iPhone_13"],
+  Aidan_S21_Ultra: ["Aidan_S21_Ultra"],
 };
 
 function validateMaps() {
@@ -102,7 +102,7 @@ generateSantas();
 </script>
 
 <template>
-  <MainView :name-map="passwordNameMap" title="Awe Cuzzie!" />
+  <MainView :name-map="passwordNameMap" title="AWE CUZZIE!" />
 </template>
 
 <style style></style>
