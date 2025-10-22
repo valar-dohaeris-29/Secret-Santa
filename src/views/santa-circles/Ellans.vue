@@ -4,7 +4,7 @@ import MainView from "../MainView.vue";
 const passwordNameMap: { [key: string]: string } = {
   reindeer: "Lucia",
   sleigh: "Aidan",
-  gingerbread: "Cathelene",
+  gingerbread: "Cathlene",
   tinsel: "Maxine",
   mistletoe: "Malcolm",
   holly: "Jansen",
@@ -18,11 +18,11 @@ const passwordNameMap: { [key: string]: string } = {
 };
 
 const nameExclusionMap: { [key: string]: string[] } = {
-  Malcolm: ["Malcolm", "Cathelene", "Ailsa", "Annie", "Demi", "Jasiel"],
+  Malcolm: ["Malcolm", "Cathlene", "Ailsa", "Annie", "Demi", "Jasiel"],
   Demi: ["Demi", "Annie", "Malcolm", "Ailsa"],
-  Cathelene: ["Cathelene", "Jasiel"],
+  Deuel: ["Deuel", "Ailsa", "Jansen", "Malcolm"],
+  Cathlene: ["Cathlene", "Jasiel"],
   Ailsa: ["Ailsa", "Demi", "Lucia"],
-  Deuel: ["Deuel", "Ailsa", "Jansen"],
   Len: ["Len", "Maxine"],
   Cathy: ["Cathy", "Demi"],
   Annie: ["Annie", "Cathy"],
