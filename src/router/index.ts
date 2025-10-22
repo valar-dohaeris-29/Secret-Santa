@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Ellans from "../views/santa-circles/Ellans.vue";
 import Cathy from "@/views/santa-circles/Cathy.vue";
+import Cousins from "@/views/santa-circles/Cousins.vue";
 
 const router = createRouter({
   history: createWebHashHistory("/Secret-Santa/"),
@@ -9,6 +10,11 @@ const router = createRouter({
       path: "/",
       name: "ellans",
       component: Ellans,
+    },
+    {
+      path: "/cuzzies",
+      name: "cuzzies",
+      component: Cousins,
     },
     {
       path: "/cathy",
