@@ -28,3 +28,20 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Private confirmed draws and organizer previews
+server/data/
+*.draw.json
+
+.env
+.env.*
+!.env.example
+**/.terraform/
+**/*.tfstate*
+**/*.tfplan
+**/*.tfvars
+**/build/
+infra-for-crowd-album/
+server/groups.json
+playwright-report/
+test-results/
