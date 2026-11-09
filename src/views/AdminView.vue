@@ -224,7 +224,6 @@ onMounted(async () => {
         </button>
       </form>
       <template v-else-if="!current">
-        <p class="intro">A thoughtful gift starts with a little planning.</p>
         <RouterLink class="primary link-button" to="/admin/new"
           >Create a list <span>+</span></RouterLink
         >

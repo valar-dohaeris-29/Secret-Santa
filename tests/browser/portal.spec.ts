@@ -48,7 +48,7 @@ test("mobile and keyboard organizer flow, copy, stable reveal, hide and nested r
     ),
   ).toBe(true);
   await page.goto(link);
-  await expect(page.getByText("Hello, Alice.")).toBeVisible();
+  await expect(page.getByText("Hello, Alice", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Reveal my person" }).click();
   await expect(
     page.getByRole("heading", { name: "Bob", exact: true }),

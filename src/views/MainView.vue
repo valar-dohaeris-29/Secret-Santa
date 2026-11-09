@@ -94,16 +94,16 @@ onUnmounted(() => {
     <div v-if="celebrating" class="confetti" aria-hidden="true">
       <span v-for="(piece, i) in pieces" :key="i" :style="{ left: piece.left, backgroundColor: piece.color, animationDelay: piece.delay }"></span>
     </div>
-    <div class="site-mark"><span aria-hidden="true">✧</span> A LITTLE CHRISTMAS MAGIC</div>
+    <div v-if="token" class="site-mark">✧ SECRET SANTA ✧</div>
     <section class="santa-card" aria-labelledby="page-title">
+      <h1 v-if="!token" id="page-title">How did you get here?</h1>
+      <template v-else>
       <div class="gift-seal" aria-hidden="true">🎁</div>
-      <p class="eyebrow">{{ details.title }}</p>
-      <h1 id="page-title">Someone’s Christmas<br />starts with you.</h1>
-      <p class="intro">A thoughtful gift. A little mystery. Your Secret Santa surprise is waiting.</p>
+      <p v-if="ready" class="eyebrow">Hello, {{ details.name }}</p>
+      <h1 id="page-title">{{ details.title }}</h1>
+      <p v-if="details.message" class="intro">{{ details.message }}</p>
 
-      <p v-if="!token" class="intro">Use the personal link sent by your organizer to discover who you’re buying for. Old group codes have been retired.</p>
-      <form v-else-if="!recipient" class="reveal-form" @submit.prevent="reveal" :aria-busy="loading">
-        <p v-if="ready" class="intro">Hello, {{ details.name }}. Ready for your surprise?</p>
+      <form v-if="!recipient" class="reveal-form" @submit.prevent="reveal" :aria-busy="loading">
         <p class="error" role="alert">{{ error }}</p>
         <button v-if="ready" ref="input" class="primary" :disabled="loading">{{ loading ? 'Opening your surprise…' : 'Reveal my person' }} <span aria-hidden="true">↗</span></button>
         <button v-else class="primary" type="button" @click="loadDetails">{{ error ? 'Try again' : 'Loading your invitation…' }}</button>
@@ -113,15 +113,14 @@ onUnmounted(() => {
       <section v-if="recipient" ref="result" class="recipient" tabindex="-1" aria-labelledby="recipient-title">
         <p>You’re buying a gift for…</p>
         <h2 id="recipient-title">{{ recipient }}</h2>
-        <p class="secret-note">Let the thoughtful scheming begin. Keep it a secret!</p>
+        <p class="secret-note">Keep it a secret!</p>
         <button class="secondary" type="button" @click="hide()">Hide name</button>
       </section>
 
       <div v-if="ready" class="group-details">
         <div><span class="detail-label">GIFT BUDGET</span><p>{{ details.budget }}</p></div>
-        <p class="group-rules">{{ details.message }}</p>
       </div>
-      <p class="footer-note"><span aria-hidden="true">✧</span> The best part is making someone smile.</p>
+      </template>
     </section>
     <p class="page-footer">Made for giving. Wrapped in <RouterLink to="/admin">secrecy</RouterLink>.</p>
   </main>

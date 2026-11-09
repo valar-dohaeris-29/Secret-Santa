@@ -37,7 +37,7 @@ button:disabled { opacity: .65; cursor: wait; }
 @keyframes fall { to { transform: translate(40px, 110vh) rotate(640deg); } }
 @media (max-width: 380px) { .santa-page { padding: 24px 12px; } .group-details { grid-template-columns: 1fr; gap: 12px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .confetti { display: none; } }
-.page-footer a {color:inherit;text-underline-offset:3px}
+.page-footer a {color:inherit;text-decoration:none}
 a {color:#214f3d}
 .admin-card {max-width:800px;text-align:left}
 .admin-card h1,.admin-card>.eyebrow {text-align:center}
