@@ -94,7 +94,7 @@ onUnmounted(() => {
     <div v-if="celebrating" class="confetti" aria-hidden="true">
       <span v-for="(piece, i) in pieces" :key="i" :style="{ left: piece.left, backgroundColor: piece.color, animationDelay: piece.delay }"></span>
     </div>
-    <div v-if="token" class="site-mark">✧ SECRET SANTA ✧</div>
+    <div v-if="token" class="site-mark"><span aria-hidden="true">✧</span> A LITTLE CHRISTMAS MAGIC</div>
     <section class="santa-card" aria-labelledby="page-title">
       <h1 v-if="!token" id="page-title">How did you get here?</h1>
       <template v-else>

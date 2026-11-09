@@ -41,6 +41,17 @@ const fresh = (): List => ({
   links: [],
 });
 const locked = computed(() => current.value?.status === "finalized");
+const exclusionGroups = computed(() =>
+  [...(current.value?.names ?? [])]
+    .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))
+    .map((name) => ({
+      name,
+      exclusions: (current.value?.exclusions ?? [])
+        .map((pair, index) => ({ recipient: pair[1], giver: pair[0], index }))
+        .filter((pair) => pair.giver === name)
+        .sort((a, b) => a.recipient.localeCompare(b.recipient, undefined, { sensitivity: "base" })),
+    })),
+);
 async function api(path: string, method = "GET", body?: unknown) {
   const r = await fetch("/api" + path, {
     method,
@@ -310,13 +321,13 @@ onMounted(async () => {
               "
             ></textarea>
           </template>
-          <template v-if="step === 5 && !locked"
+          <template v-if="step === 5"
             ><h3>Who can’t draw whom?</h3>
             <p class="field-help">
               Everyone is automatically excluded from drawing themselves. Each
               extra exclusion works in one direction only.
             </p>
-            <div class="exclusion-picker">
+            <div v-if="!locked" class="exclusion-picker">
               <label for="giver"
                 >Giver<select id="giver" aria-label="Giver" v-model="from">
                   <option value="">Choose giver</option>
@@ -342,17 +353,27 @@ onMounted(async () => {
                 Add
               </button>
             </div>
-            <ul class="exclusions">
-              <li v-for="(pair, i) in current.exclusions" :key="i">
-                {{ pair[0] }} → cannot draw {{ pair[1] }}
-                <button
-                  type="button"
-                  class="text-button"
-                  :aria-label="`Remove exclusion for ${pair[0]} and ${pair[1]}`"
-                  @click="current.exclusions.splice(i, 1)"
-                >
-                  Remove
-                </button>
+            <p class="field-help">{{ current.exclusions.length }} additional exclusions · {{ current.names.length }} participants</p>
+            <ul class="exclusion-groups" aria-label="Exclusions by giver">
+              <li v-for="group in exclusionGroups" :key="group.name" class="exclusion-group">
+                <div class="exclusion-giver">
+                  <strong>{{ group.name }}</strong>
+                  <span>{{ group.exclusions.length }} additional</span>
+                </div>
+                <div class="exclusion-recipients">
+                  <p v-if="!group.exclusions.length" class="exclusion-empty">Can draw anyone except themselves</p>
+                  <template v-else>
+                    <p class="detail-label">CANNOT DRAW</p>
+                    <ul class="exclusion-tags">
+                      <li v-for="item in group.exclusions" :key="item.recipient">
+                        <span>{{ item.recipient }}</span>
+                        <button v-if="!locked" type="button"
+                          :aria-label="`Remove exclusion for ${group.name} and ${item.recipient}`"
+                          @click="current.exclusions.splice(item.index, 1)">×</button>
+                      </li>
+                    </ul>
+                  </template>
+                </div>
               </li>
             </ul></template
           >

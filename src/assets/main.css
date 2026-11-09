@@ -63,3 +63,16 @@ textarea {resize:vertical}
 .invitation input {min-width:0;font-size:.8rem}
 .invitation .secondary {margin:0}
 @media(max-width:550px){.exclusion-picker {grid-template-columns:1fr}.list-row {align-items:flex-start;flex-direction:column}.admin-card {padding:24px 18px}.actions {flex-wrap:wrap}}
+
+.exclusion-groups {list-style:none;padding:0;margin:0;border:1px solid #dfdfd0;border-radius:14px;overflow:hidden}
+.exclusion-group {display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:18px;padding:18px;background:#fffefa}
+.exclusion-group + .exclusion-group {border-top:1px solid #dfdfd0}
+.exclusion-giver {display:flex;flex-direction:column;gap:4px;overflow-wrap:anywhere}
+.exclusion-giver > span,.exclusion-empty {font-size:.8rem;color:#59665d}
+.exclusion-tags {display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:8px 0 0}
+.exclusion-tags li {display:flex;align-items:center;gap:8px;padding:0 0 0 12px;border:1px solid #ded2bc;border-radius:10px;background:#f5eddf;max-width:100%;overflow-wrap:anywhere}
+.exclusion-tags li > span {padding:8px 0}
+.exclusion-tags li > span:last-child {padding-right:12px}
+.exclusion-tags button {min-height:44px;min-width:44px;padding:8px;color:#794925;background:transparent;font-size:1.3rem;flex-shrink:0}
+.exclusion-tags button:hover {background:#eadcc5}
+@media(max-width:550px){.exclusion-group {grid-template-columns:1fr;gap:10px}.exclusion-giver {flex-direction:row;justify-content:space-between;align-items:baseline;gap:12px}.exclusion-giver > span {white-space:nowrap}}

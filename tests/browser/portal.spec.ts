@@ -23,6 +23,12 @@ test("mobile and keyboard organizer flow, copy, stable reveal, hide and nested r
   await page.getByLabel("Giver", { exact: true }).selectOption("Alice");
   await page.getByLabel("Cannot draw", { exact: true }).selectOption("Carol");
   await page.getByRole("button", { name: "Add", exact: true }).click();
+  await page.getByLabel("Giver", { exact: true }).selectOption("Carol");
+  await page.getByLabel("Cannot draw", { exact: true }).selectOption("Bob");
+  await page.getByRole("button", { name: "Add", exact: true }).click();
+  await expect(page.locator(".exclusion-giver strong")).toHaveText(["Alice", "Bob", "Carol"]);
+  await page.getByRole("button", { name: "Remove exclusion for Carol and Bob", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Remove exclusion for Alice and Carol", exact: true })).toBeVisible();
   await page
     .getByRole("button", { name: "Generate draw", exact: true })
     .click();
