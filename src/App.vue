@@ -1,18 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HomeView from "./views/MainView.vue";
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
-    <nav>
-      <!-- <HomeView /> -->
-      <!-- <RouterLink to="/">Home</RouterLink> -->
-      <!-- <RouterLink to="/about">About</RouterLink> -->
-    </nav>
-  </header>
-
-  <RouterView />
+  <RouterView v-slot="{ Component, route }">
+    <component :is="Component" :key="route.path" />
+  </RouterView>
 </template>
-
-<style scoped></style>
